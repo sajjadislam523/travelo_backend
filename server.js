@@ -36,6 +36,12 @@ async function run() {
             const packages = await packageCollection.find().toArray();
             res.send(packages);
         });
+
+        app.post("/packages", async (req, res) => {
+            const package = req.body;
+            const result = await packageCollection.insertOne(package);
+            res.send(result);
+        });
     } finally {
         // Ensures that the client will close when you finish/error
     }
