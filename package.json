@@ -1,19 +1,26 @@
 {
-    "name": "backend",
-    "version": "1.0.0",
-    "description": "express backend for travelo website",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js"
+    "name": "backendts",
+    "module": "index.ts",
+    "type": "module",
+    "private": true,
+    "devDependencies": {
+        "@types/bun": "latest"
     },
-    "author": "",
-    "license": "ISC",
+    "peerDependencies": {
+        "typescript": "^5"
+    },
+    "scripts": {
+        "start": "bun run index.ts",
+        "build": "tsc",
+        "serve": "node dist/index.js"
+    },
     "dependencies": {
+        "@types/cors": "^2.8.18",
+        "@types/express": "^5.0.1",
         "cors": "^2.8.5",
         "dotenv": "^16.5.0",
         "express": "^5.1.0",
         "jsonwebtoken": "^9.0.2",
-        "mongodb": "^6.15.0"
+        "mongodb": "^6.16.0"
     }
 }
