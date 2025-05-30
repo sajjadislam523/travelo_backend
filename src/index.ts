@@ -1,0 +1,77 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+import cors from "cors";
+import express, {
+    type Application,
+    type Request,
+    type Response,
+} from "express";
+import rateLimit from "express-rate-limit";
+import mongoose from "mongoose";
+import morgan from "morgan";
+import packageRoutes from "./routes/packageRoutes";
+
+const app: Application = express();
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI as string;
+
+// Rate limiting middleware
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    message: "Too many requests from this IP, please try again later",
+});
+
+// Middleware
+app.use(limiter);
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(morgan("dev"));
+
+// Health check of the endpoint
+app.get("/health", (req: Request, res: Response) => {
+    res.status(200).json({
+        status: "ok",
+        message: "Server is running",
+        timestamp: new Date().toISOString(),
+    });
+});
+
+// API routes
+app.use("/api/packages", packageRoutes);
+
+// 404 handler
+app.use((req: Request, res: Response) => {
+    res.status(404).json({
+        success: false,
+        message: "Endpoint not found",
+        path: req.originalUrl,
+    });
+});
+
+// Connect to mongodb to start the server
+mongoose
+    .connect(MONGODB_URI)
+    .then(() => {
+        console.log("✅ MongoDB connected");
+        app.listen(PORT, () => {
+            console.log(`🚀 Server running on port ${PORT}`);
+            console.log(
+                `📡 API available at http://localhost:${PORT}/api/packages`
+            );
+        });
+    })
+    .catch((error: unknown) => {
+        let errorMessage = "Unknown MongoDB connection error";
+
+        if (error instanceof Error) {
+            errorMessage = error.message;
+        } else if (typeof error === "string") {
+            errorMessage = error;
+        }
+
+        console.error("❌ MongoDB connection error:", errorMessage);
+        process.exit(1);
+    });
