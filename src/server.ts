@@ -9,7 +9,6 @@ import morgan from "morgan";
 import packageRoutes from "./routes/packageRoutes";
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
 // Rate limiting middleware
@@ -27,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Health check of the endpoint
-app.get("/health", (req: Request, res: Response) => {
+app.get("/api/health", (req: Request, res: Response) => {
     res.status(200).json({ status: "ok" });
 });
 
