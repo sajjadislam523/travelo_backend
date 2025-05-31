@@ -54,24 +54,15 @@ app.use((req: Request, res: Response) => {
 // Connect to mongodb to start the server
 mongoose
     .connect(MONGODB_URI)
-    .then(() => {
-        console.log("✅ MongoDB connected");
-        app.listen(PORT, () => {
-            console.log(`🚀 Server running on port ${PORT}`);
-            console.log(
-                `📡 API available at http://localhost:${PORT}/api/packages`
-            );
-        });
-    })
-    .catch((error: unknown) => {
-        let errorMessage = "Unknown MongoDB connection error";
+    .then(() => console.log("✅ MongoDB connected"))
+    .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-        if (error instanceof Error) {
-            errorMessage = error.message;
-        } else if (typeof error === "string") {
-            errorMessage = error;
-        }
-
-        console.error("❌ MongoDB connection error:", errorMessage);
-        process.exit(1);
+// Only start the server locally, not on Vercel
+if (process.env.VERCEL_ENV !== "production") {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+        console.log(`🚀 Server running on port ${PORT}`);
     });
+}
+
+export default app;

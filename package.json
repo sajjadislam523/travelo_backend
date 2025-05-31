@@ -1,6 +1,6 @@
 {
     "name": "backend",
-    "module": "index.ts",
+    "module": "./src/index.ts",
     "type": "module",
     "private": true,
     "devDependencies": {
@@ -11,8 +11,9 @@
     },
     "scripts": {
         "start": "bun run src/index.ts",
-        "build": "tsc",
-        "serve": "node dist/index.js"
+        "build": "bun build ./src/index.ts --outdir dist --target node",
+        "serve": "node dist/index.js",
+        "vercel-build": "bun run build"
     },
     "dependencies": {
         "@types/cors": "^2.8.18",
@@ -33,6 +34,7 @@
         "mongoose": "^8.15.1",
         "morgan": "^1.10.0",
         "multer": "^2.0.0",
+        "serverless-http": "^3.2.0",
         "ts-node": "^10.9.2"
     }
 }
