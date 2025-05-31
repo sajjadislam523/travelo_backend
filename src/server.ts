@@ -32,11 +32,7 @@ app.use(morgan("dev"));
 
 // Health check of the endpoint
 app.get("/health", (req: Request, res: Response) => {
-    res.status(200).json({
-        status: "ok",
-        message: "Server is running",
-        timestamp: new Date().toISOString(),
-    });
+    res.status(200).json({ status: "ok" });
 });
 
 // API routes
@@ -57,8 +53,8 @@ mongoose
     .then(() => console.log("✅ MongoDB connected"))
     .catch((err) => console.error("❌ MongoDB connection error:", err));
 
-// Only start the server locally, not on Vercel
-if (process.env.VERCEL_ENV !== "production") {
+// Only listen locally
+if (!process.env.VERCEL) {
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => {
         console.log(`🚀 Server running on port ${PORT}`);

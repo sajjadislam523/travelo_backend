@@ -1,16 +1,4 @@
+import serverless from "serverless-http";
 import app from "./server";
 
-const PORT = process.env.PORT || 5000;
-
-// Local development server
-if (!process.env.VERCEL) {
-    app.listen(PORT, () => {
-        console.log(`🚀 Server running on port ${PORT}`);
-        console.log(
-            `📡 API available at http://localhost:${PORT}/api/packages`
-        );
-    });
-}
-
-// Export the Express app as the serverless function handler
-module.exports = app;
+export const handler = serverless(app);
