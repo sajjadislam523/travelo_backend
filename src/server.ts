@@ -26,7 +26,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Health check of the endpoint
-app.get("/api/health", (req: Request, res: Response) => {
+app.get("/health", (req: Request, res: Response) => {
     res.status(200).json({ status: "ok" });
 });
 
