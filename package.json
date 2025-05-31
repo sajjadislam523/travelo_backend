@@ -10,10 +10,9 @@
         "typescript": "^5.8.3"
     },
     "scripts": {
-        "start": "bun run src/index.ts",
-        "build": "bun build ./src/index.ts --outdir dist --target node",
-        "serve": "node dist/index.js",
-        "vercel-build": "bun run build"
+        "start": "node dist/index.js",
+        "build": "tsc",
+        "dev": "ts-node src/index.ts"
     },
     "dependencies": {
         "@types/cors": "^2.8.18",
