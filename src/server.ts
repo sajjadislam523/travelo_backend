@@ -2,17 +2,13 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import cors from "cors";
-import express, {
-    type Application,
-    type Request,
-    type Response,
-} from "express";
+import express, { type Request, type Response } from "express";
 import rateLimit from "express-rate-limit";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import packageRoutes from "./routes/packageRoutes";
 
-const app: Application = express();
+const app = express();
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
