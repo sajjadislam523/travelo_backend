@@ -20,7 +20,7 @@ router.get("/", getAllPackages);
 router.get("/:id", getPackage);
 
 // Update package
-router.get("/:id", upload.single("image"), updatePackage);
+router.put("/:id", upload.single("image"), updatePackage);
 
 // Delete package
 router.delete("/:id", deletePackage);

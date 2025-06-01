@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "ES2020", // Modern JavaScript output
         "module": "CommonJS", // For Node.js compatibility
-        "rootDir": "src", // Your source files
+        "rootDir": ".", // Your source files
         "outDir": "dist", // Compiled JS output folder
         "strict": true, // Enable all strict type-checking options
         "esModuleInterop": true, // Allow default imports from CommonJS modules
@@ -11,6 +11,6 @@
         "noUnusedLocals": false,
         "noUnusedParameters": false
     },
-    "include": ["src"],
+    "include": ["src/**/*.ts", "api/**/*.ts"],
     "exclude": ["node_modules", "dist"]
 }
