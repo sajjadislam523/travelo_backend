@@ -1,16 +1,14 @@
 {
     "compilerOptions": {
-        "target": "ES2020", // Modern JavaScript output
-        "module": "CommonJS", // For Node.js compatibility
-        "rootDir": ".", // Your source files
-        "outDir": "dist", // Compiled JS output folder
-        "strict": true, // Enable all strict type-checking options
-        "esModuleInterop": true, // Allow default imports from CommonJS modules
-        "skipLibCheck": true, // Skip type checking of declaration files
-        "forceConsistentCasingInFileNames": true,
-        "noUnusedLocals": false,
-        "noUnusedParameters": false
+        "target": "ESNext",
+        "module": "commonjs",
+        "lib": ["esnext"],
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "strict": true,
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "types": ["node"]
     },
-    "include": ["src/**/*.ts", "api/**/*.ts"],
-    "exclude": ["node_modules", "dist"]
+    "include": ["api/**/*"]
 }

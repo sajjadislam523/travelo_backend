@@ -9,8 +9,8 @@
         "typescript": "^5.8.3"
     },
     "scripts": {
-        "start": "node dist/local.js",
         "build": "tsc",
+        "start": "node dist/local.js",
         "dev": "ts-node src/local.ts"
     },
     "dependencies": {
