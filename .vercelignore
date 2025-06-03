@@ -1,6 +1,0 @@
-node_modules
-.gitignore
-*.md
-src
-tsconfig.json
-*.env
