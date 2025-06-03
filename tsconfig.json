@@ -3,12 +3,12 @@
         "target": "ESNext",
         "module": "commonjs",
         "lib": ["esnext"],
-        "outDir": "dist",
+        "outDir": "./dist",
+        "rootDir": "./src",
         "esModuleInterop": true,
         "strict": true,
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "types": ["node"]
-    },
-    "include": ["api/**/*"]
+    }
 }
